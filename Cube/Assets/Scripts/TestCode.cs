@@ -2,11 +2,23 @@ using UnityEngine;
 
 public class TestCode : MonoBehaviour
 {
-
+    
     Vector3 st, ed;
-    // Update is called once per frame
-    void Update()
+    public GameObject effect;
+    public TrailRenderer trailRenderer;
+    Rigidbody body;
+    public float speed = 5;
+    private void Start()
     {
+        body = GetComponent<Rigidbody>();
+        //effect.transform.position = ObjectToScreenPosition(effect, Camera.main);
+    }
+    // Update is called once per frame
+    int i = 0;
+    void FixedUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            body.AddForce(Vector3.up * speed, ForceMode.Impulse);
         //if (Input.GetMouseButtonDown(0))
         //{
         //    st = Input.mousePosition;
@@ -19,18 +31,23 @@ public class TestCode : MonoBehaviour
         //    st = ed;
         //}
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                hit.transform.GetComponent<Debris>().Explosion();
-            }
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out RaycastHit hit))
+        //    {
+        //        hit.transform.GetComponent<Debris>().Explosion();
+        //    }
+        //}
     }
 
+    Vector3 ObjectToScreenPosition(GameObject go, Camera cam)
+    {
+        return cam.WorldToScreenPoint(go.transform.position);
+    }
+    
     public void SetCube()
     {
-        transform.rotation = Quaternion.identity;
+        Instantiate(effect,Vector3.zero,Quaternion.identity);
     }
 }
