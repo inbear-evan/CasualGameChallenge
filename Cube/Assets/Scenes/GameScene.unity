@@ -4708,11 +4708,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57517d733ce5eac438c171494df8a731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1725826352}
   feverGauage: {fileID: 389945131}
   sliderColor: {fileID: 623513083}
   speedLineEffect: {fileID: 2100000, guid: 7c4c9afd8896dd340a994564d8af7b83, type: 2}
   ObsMove: {fileID: 232207598}
+  player: {fileID: 1725826352}
   gauageScore: 0.05
   maxGauage: 100
 --- !u!1 &1225591274
@@ -5686,6 +5686,7 @@ GameObject:
   - component: {fileID: 1557392898}
   - component: {fileID: 1557392897}
   - component: {fileID: 1557392896}
+  - component: {fileID: 1557392900}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -5770,6 +5771,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557392900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557392895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d447207561f9f4cae32e30fccf3e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1560276239
 GameObject:
   m_ObjectHideFlags: 0

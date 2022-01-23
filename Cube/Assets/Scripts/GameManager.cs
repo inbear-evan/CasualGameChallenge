@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         startPlayerColor(); 
     }
 
-    void startPlayerColor()
+    public void startPlayerColor()
     {
         Ray rightRay = new Ray(plyerSpot[0].position + new Vector3(0, 0, 1), Vector3.forward);
         Ray leftRay = new Ray(plyerSpot[1].position + new Vector3(0, 0, 1), Vector3.forward);

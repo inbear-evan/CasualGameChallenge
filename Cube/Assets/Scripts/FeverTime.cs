@@ -16,7 +16,7 @@ public class FeverTime : MonoBehaviour
     public Image sliderColor;
     public Material speedLineEffect;
     public ObstacleMove ObsMove;
-
+    public Player player;
     public float gauageScore = 1;
     public float maxGauage = 10;
     // Start is called before the first frame update
@@ -38,6 +38,8 @@ public class FeverTime : MonoBehaviour
         {
             addFeverGauage(true);
             ObstaclesManager.instance.inActiveFever();
+            GameManager.instance.startPlayerColor();
+            player.playerColorChange();
         }
         
     }

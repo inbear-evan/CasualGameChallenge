@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] TrailRenderer trailRanderer; 
     [SerializeField] float jumpPower = 5;
     Rigidbody rb;
-    bool IsRight = false, IsGround = true;
+    bool IsRight = false, IsGround = false;
 
     void Start()
     {
@@ -24,11 +24,26 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            int num = GameManager.instance.colorNumber;
-            Debug.Log(num);
-            if (num < 2) movePosition();
-            else Jump();
+            if (IsGround)
+            {
+                int num = GameManager.instance.colorNumber;
+                Debug.Log(num);
+                if (num == 2)
+                {
+                    Jump();
+                }
+                else
+                {
+                    movePosition();
+                }
+            }
         }
+    }
+
+    public void toggleGround()
+    {
+        if(IsGround) IsGround = false;
+        else IsGround = true;
     }
 
     void Jump()
