@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<Transform> plyerSpot;
-    public Color[] obsColor = new Color[2];
+    static public Color[] obsColor = new Color[2];
     public GameObject gameOver;
     public TMP_Text score; //Plane바닥에 있는 점수
     public Text scoreUI; //게임오버시 나오는 점수
 
     public int colorNumber = 0;
     static public GameManager instance;
-
+    public bool isPause = false;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -27,26 +27,26 @@ public class GameManager : MonoBehaviour
         gameOver.gameObject.SetActive(false);
         score.text = "0";
     }
-    private void FixedUpdate()
+    private void Update()
     {
         startPlayerColor(); 
     }
 
     public void startPlayerColor()
     {
-        Ray rightRay = new Ray(plyerSpot[0].position + new Vector3(0, 0, 1), Vector3.forward);
-        Ray leftRay = new Ray(plyerSpot[1].position + new Vector3(0, 0, 1), Vector3.forward);
+        Ray rightRay = new Ray(plyerSpot[0].position + new Vector3(0, 0, 0), Vector3.forward);
+        Ray leftRay = new Ray(plyerSpot[1].position + new Vector3(0, 0, 0), Vector3.forward);
 
-        if (Physics.Raycast(rightRay, out RaycastHit rightHit, 12))
+        if (Physics.Raycast(rightRay, out RaycastHit rightHit))
         {
             //Debug.Log(rightHit.transform.name);
-            Debug.DrawLine(plyerSpot[0].position + new Vector3(0, 0, 1), rightHit.point, Color.red);
+            Debug.DrawLine(plyerSpot[0].position + new Vector3(0, 0, 0), rightHit.point, Color.red);
             obsColor[0] = rightHit.transform.GetComponent<MeshRenderer>().material.color;
         }
-        if (Physics.Raycast(leftRay, out RaycastHit leftHit, 12))
+        if (Physics.Raycast(leftRay, out RaycastHit leftHit))
         {
             //Debug.Log(leftHit.transform.name);
-            Debug.DrawLine(plyerSpot[1].position + new Vector3(0, 0, 1), leftHit.point, Color.red);
+            Debug.DrawLine(plyerSpot[1].position + new Vector3(0, 0, 0), leftHit.point, Color.red);
             obsColor[1] = leftHit.transform.GetComponent<MeshRenderer>().material.color;
         }
     }

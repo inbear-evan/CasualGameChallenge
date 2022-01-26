@@ -34,14 +34,13 @@ public class FeverTime : MonoBehaviour
             addFeverGauage(false);
             ObstaclesManager.instance.activeFever();
         }
-        else if(feverGauage.value - gauageScore <= 0)
+        else if (feverGauage.value - gauageScore <= 0)
         {
-            addFeverGauage(true);
             ObstaclesManager.instance.inActiveFever();
             GameManager.instance.startPlayerColor();
             player.playerColorChange();
+            addFeverGauage(true);
         }
-        
     }
     public void setColor(Color color)
     {
@@ -73,9 +72,9 @@ public class FeverTime : MonoBehaviour
     /// <returns></returns>
     IEnumerator toFeverTime()
     {
-        while(feverGauage.value < feverGauage.maxValue)
+        while (feverGauage.value < feverGauage.maxValue)
         {
-            if (Time.timeScale != 0)
+            if (Time.timeScale != 0 && !GameManager.instance.isPause)
             {
                 feverGauage.value += gauageScore / ObsMove.speed;
             }
@@ -92,8 +91,9 @@ public class FeverTime : MonoBehaviour
     {
         while (feverGauage.value > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) break;
-            feverGauage.value -= gauageScore;
+            //if (Input.GetKeyDown(KeyCode.Space)) break;
+            if(!GameManager.instance.isPause)
+                feverGauage.value -= gauageScore;
             yield return null;
         }
     }

@@ -25,27 +25,30 @@ public class CameraMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime >= moveTiming)
+        if (!GameManager.instance.isPause)
         {
-            currentTime = 0;
-            int spot = Random.Range(0, camSpot.Count);
-            if (spot != moveTimingBuf) moveTimingBuf = spot;
-            else
+            currentTime += Time.deltaTime;
+            if (currentTime >= moveTiming)
             {
-                spot = (spot + 1) % camSpot.Count;
-            }
-            score.transform.rotation = Quaternion.Euler(90, 0, -camSpot[spot].eulerAngles.y);
+                currentTime = 0;
+                int spot = Random.Range(0, camSpot.Count);
+                if (spot != moveTimingBuf) moveTimingBuf = spot;
+                else
+                {
+                    spot = (spot + 1) % camSpot.Count;
+                }
+                score.transform.rotation = Quaternion.Euler(90, 0, -camSpot[spot].eulerAngles.y);
 
-            //if (spot == 3)
-            //{
-            //    score.transform.rotation = Quaternion.Euler(90, 0, camSpot[spot].eulerAngles.y);
-            //}
-            //else
-            //{
-            //    score.transform.rotation = Quaternion.Euler(90, 0, 0);
-            //}
-            StartCoroutine(moveSpot(spot));
+                //if (spot == 3)
+                //{
+                //    score.transform.rotation = Quaternion.Euler(90, 0, camSpot[spot].eulerAngles.y);
+                //}
+                //else
+                //{
+                //    score.transform.rotation = Quaternion.Euler(90, 0, 0);
+                //}
+                StartCoroutine(moveSpot(spot));
+            }
         }
 
     }
@@ -54,22 +57,31 @@ public class CameraMove : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            int timingBuf = int.Parse(moveTimingText.text) - 1;
-            moveTimingText.text = timingBuf.ToString();
+            if (!GameManager.instance.isPause)
+            {
+                int timingBuf = int.Parse(moveTimingText.text) - 1;
+                moveTimingText.text = timingBuf.ToString();
+            }
         }
     }
     IEnumerator moveSpot(int _spot)
     {
-        while (transform.position != camSpot[_spot].position)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) break;
-            transform.position = Vector3.MoveTowards(transform.position, camSpot[_spot].position, 0.05f);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, camSpot[_spot].rotation, 2.5f);
-            yield return null;
-        }
+        //while (transform.position != camSpot[_spot].position)
+        //while (transform.rotation != camSpot[_spot].rotation)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space)) break;
+        //    transform.position = Vector3.MoveTowards(transform.position, camSpot[_spot].position, 0.05f);
+        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, camSpot[_spot].rotation, 5f);
+        //    yield return null;
+        //}
+        yield return null;
+        transform.position = camSpot[_spot].position;
+        transform.rotation = camSpot[_spot].rotation;
+
         moveTiming = Random.Range(minTime, maxTime);
         moveTimingText.text = moveTiming.ToString();
         currentTime = 0;
+        
     }
 }
 

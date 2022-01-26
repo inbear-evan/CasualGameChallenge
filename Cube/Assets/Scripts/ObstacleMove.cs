@@ -14,7 +14,8 @@ public class ObstacleMove : MonoBehaviour
     }
     void Update()
     {
-        transform.position += Vector3.back * speed * Time.deltaTime;
+        if(!GameManager.instance.isPause)
+            transform.position += Vector3.back * speed * Time.deltaTime;
     }
     public void InitState()
     {
