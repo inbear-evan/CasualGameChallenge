@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] List<Transform> plyerSpot;
     [SerializeField] TrailRenderer trailRanderer; 
     [SerializeField] float jumpPower = 5;
+
+    public AudioSource JumpMusic;
+    public AudioSource SlideMusic;
     Rigidbody rb;
     bool IsRight = false, IsGround = false;
 
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             if (IsGround)
             {
@@ -30,11 +33,18 @@ public class Player : MonoBehaviour
                 Debug.Log(num);
                 if (num == 2)
                 {
+                    if (JumpMusic.isPlaying) JumpMusic.Stop();
+                    if (SlideMusic.isPlaying) SlideMusic.Stop();
                     Jump();
+                    JumpMusic.Play();
+
                 }
                 else
                 {
+                    if (SlideMusic.isPlaying) SlideMusic.Stop();
+                    if (JumpMusic.isPlaying) JumpMusic.Stop();
                     movePosition();
+                    SlideMusic.Play();
                 }
             }
         }

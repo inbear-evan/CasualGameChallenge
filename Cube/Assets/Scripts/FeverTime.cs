@@ -29,12 +29,12 @@ public class FeverTime : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (feverGauage.value + gauageScore >= feverGauage.maxValue)
+        if ((feverGauage.value + gauageScore) >= feverGauage.maxValue)
         {
             addFeverGauage(false);
             ObstaclesManager.instance.activeFever();
         }
-        else if (feverGauage.value - gauageScore <= 0)
+        else if ((feverGauage.value - gauageScore) <= 0)
         {
             ObstaclesManager.instance.inActiveFever();
             GameManager.instance.startPlayerColor();

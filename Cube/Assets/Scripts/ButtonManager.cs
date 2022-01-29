@@ -11,9 +11,9 @@ public class ButtonManager : MonoBehaviour
     public Image pauseMenu;
     [SerializeField] GameObject settingPanel;
     
-
     private void Start()
     {
+        Time.timeScale = 1;
         if (pauseMenu != null)
         {
             pauseMenu.gameObject.SetActive(false);

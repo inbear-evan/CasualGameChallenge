@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         gameOver.gameObject.SetActive(false);
         score.text = "0";
     }

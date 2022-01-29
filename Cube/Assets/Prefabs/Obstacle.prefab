@@ -108,6 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf6758b700b81740b58460980c19f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackMusic: {fileID: 0}
+  JumpMusic: {fileID: 0}
+  DeadMusic: {fileID: 0}
+  SlideMusic: {fileID: 0}
+  CrashMusic: {fileID: 0}
 --- !u!1 &6692187003777518507
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,3 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf6758b700b81740b58460980c19f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackMusic: {fileID: 0}
+  JumpMusic: {fileID: 0}
+  DeadMusic: {fileID: 0}
+  SlideMusic: {fileID: 0}
+  CrashMusic: {fileID: 0}
