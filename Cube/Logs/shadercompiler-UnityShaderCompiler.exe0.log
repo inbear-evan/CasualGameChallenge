@@ -599,3 +599,4 @@ Cmd: preprocess
 
 Cmd: initializeCompiler
 
+Cmd: shutdown
